@@ -1,41 +1,63 @@
-var path = require('path');
-var webpack = require('webpack');
+'use strict'
 
-module.exports = {
-    entry: [
-        './src/index.js'
-    ],
-    output: {
-        pathinfo: true,
-        path: path.resolve(__dirname, 'public'),
-        filename: 'bundle.js',
-        publicPath: '/'
-    },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        /*new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })*/
-    ],
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                loaders: ['react-hot', 'babel-loader']
-            },
+var webpack = require('webpack')
+var env = process.env.NODE_ENV
 
-            {
-                test: /\.(png|jpg)$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'url-loader?name=images/[name].[ext]&limit=8192'
-            },
+var reactExternal = {
+  root: 'React',
+  commonjs2: 'react',
+  commonjs: 'react',
+  amd: 'react'
+}
 
-        ]
+var reactReduxExternal = {
+  commonjs2: 'react-redux',
+  commonjs: 'react-redux',
+  amd: 'react-redux'
+}
+
+var config = {
+  externals: {
+    'react': reactExternal,
+    'react-redux': reactReduxExternal
+  },
+  module: {
+    loaders: [
+      { test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/ }
+    ]
+  },
+  output: {
+    library: 'ReactReduxMdl',
+    libraryTarget: 'umd'
+  },
+  plugins: [
+    {
+      apply: function apply(compiler) {
+        compiler.parser.plugin('expression global', function expressionGlobalPlugin() {
+          this.state.module.addVariable('global', "(function() { return this; }()) || Function('return this')()")
+          return false
+        })
+      }
     },
-    resolve: {
-        extensions: ['', '.js', '.jsx', '.json', '.css', '.png', '.jpg', '.jpeg', '.gif']
-    },
-};
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(env)
+    })
+  ]
+}
+
+if (env === 'production') {
+  config.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        screw_ie8: true,
+        warnings: false
+      }
+    })
+  )
+}
+
+module.exports = config
