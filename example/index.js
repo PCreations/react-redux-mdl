@@ -9,13 +9,22 @@ import {
     RaisedButton,
     FabButton,
     MiniFabButton,
-    IconButton
-} from './components/Button'
-import Badge from './components/Badge'
-import Icon from './components/Icon'
-import { Card, CardTitle, CardMedia, CardText, CardActions, CardMenu } from './components/Card'
-import { Dialog, DialogTitle, DialogContent, DialogActions } from './components/Dialog'
-import {
+    IconButton,
+    Badge,
+    Icon,
+    Card,
+    CardTitle,
+    CardMedia,
+    CardText,
+    CardActions,
+    CardMenu,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    List,
+    ListItem,
+    SubDiv,
     Layout,
     LayoutHeader,
     LayoutHeaderRow,
@@ -28,15 +37,16 @@ import {
     LayoutContent,
     LayoutTabBar,
     LayoutTab,
-    LayoutTabPanel
-} from './components/Layout'
-import { Grid, Cell } from './components/Grid'
-import { Tabs, TabBar, TabLink, TabPanel } from './components/Tabs'
-import { List, ListItem, SubDiv } from './components/List'
-import ProgressBar from './components/ProgressBar'
-import Spinner from './components/Spinner'
-import RippleEffect from './components/Ripple'
-import {
+    LayoutTabPanel,
+    Grid,
+    Cell,
+    Tabs,
+    TabBar,
+    TabLink,
+    TabPanel,
+    ProgressBar,
+    Spinner,
+    RippleEffect,
     MegaFooter,
     MegaFooterHeading,
     MegaFooterTopSection,
@@ -52,8 +62,16 @@ import {
     MiniFooterLeftSection,
     MiniFooterRightSection,
     MiniFooterLinkList,
-    MiniFooterSocialButton
-} from './components/Footer'
+    MiniFooterSocialButton,
+    TextField,
+    Checkbox,
+    MDLtable,
+    MDLthead,
+    MDLtbody,
+    MDLtd,
+    MDLth,
+    MDLtr
+} from '../lib'
 
 
 class DemoSimpleDialogHandler extends React.Component {
@@ -491,7 +509,7 @@ ReactDOM.render(
 
         {/* Simple List */}
         <Grid>
-            <Cell col={4} offsetDesktop={4}>
+            <Cell col={4} offsetDesktop={4} tablet={8}>
                 <List>
                     <ListItem>
                         <SubDiv type='primary'>{'Bryan Cranston'}</SubDiv>
@@ -570,7 +588,38 @@ ReactDOM.render(
         {/* List avatars and controls */}
         <Grid>
             <Cell col={4} offsetDesktop={4}>
-                {'TODO list avatars and controls'}
+                <List>
+                    <ListItem>
+                        <SubDiv type='primary'>
+                            <SubDiv type='avatar'>person</SubDiv>
+                            {'Bryan Cranston'}
+                        </SubDiv>
+                        <SubDiv type='secondary' href="#">
+                            <RaisedButton colored>{'edit'}</RaisedButton>
+                        </SubDiv>
+                        <SubDiv type='action' href="#">
+                            <Checkbox/>
+                        </SubDiv>
+                    </ListItem>
+                    <ListItem>
+                        <SubDiv type='primary'>
+                            <SubDiv type='avatar'>person</SubDiv>
+                            {'Aaron Paul'}
+                        </SubDiv>
+                        <SubDiv type='action' href="#">
+                            <Checkbox/>
+                        </SubDiv>
+                    </ListItem>
+                    <ListItem>
+                        <SubDiv type='primary'>
+                            <SubDiv type='avatar'>person</SubDiv>
+                            {'Bob Odenkirk'}
+                        </SubDiv>
+                        <SubDiv type='action' href="#">
+                            <Checkbox/>
+                        </SubDiv>
+                    </ListItem>
+                </List>
             </Cell>
         </Grid>
 
@@ -687,6 +736,60 @@ ReactDOM.render(
         <Grid>
             <Cell col={2} offsetDesktop={4}><Spinner active/></Cell>
             <Cell col={2}><Spinner active singleColor/></Cell>
+        </Grid>
+
+        <Grid>
+            <Cell col={6}>
+                <TextField id={'test'} placeholder={'Text...'} />
+            </Cell>
+            <Cell col={6}>
+                <TextField
+                    id={'test'}
+                    placeholder={'Text...'}
+                    pattern={"-?[0-9]*(\.[0-9]+)?"}
+                    errorText={'Input is not a number!'}
+                    floatingLabel/>
+            </Cell>
+        </Grid>
+
+        <Grid>
+            <Cell col={6}>
+                <Checkbox id={'checkbox-1'} label={'Checkbox'} checked/>
+            </Cell>
+            <Cell col={6}>
+                <Checkbox id={'checkbox-2'} label={'Checkbox'} />
+            </Cell>
+        </Grid>
+
+        <Grid>
+            <Cell col={4} offsetDesktop={4}>
+                <MDLtable>
+                    <MDLthead>
+                        <MDLtr>
+                            <MDLth nonNumeric>{'Material'}</MDLth>
+                            <MDLth>{'Quantity'}</MDLth>
+                            <MDLth>{'Unit price'}</MDLth>
+                        </MDLtr>
+                    </MDLthead>
+                    <MDLtbody>
+                        <MDLtr>
+                            <MDLtd nonNumeric>{'Acrylic (Transparent)'}</MDLtd>
+                            <MDLtd>{250}</MDLtd>
+                            <MDLtd>{'$2.90'}</MDLtd>
+                        </MDLtr>
+                        <MDLtr selected>
+                            <MDLtd nonNumeric>{'Plywood (Birch)'}</MDLtd>
+                            <MDLtd>{50}</MDLtd>
+                            <MDLtd>{'$1.25'}</MDLtd>
+                        </MDLtr>
+                        <MDLtr>
+                            <MDLtd nonNumeric>{'Laminate (Gold on Blue)'}</MDLtd>
+                            <MDLtd>{10}</MDLtd>
+                            <MDLtd>{'$12.35'}</MDLtd>
+                        </MDLtr>
+                    </MDLtbody>
+                </MDLtable>
+            </Cell>
         </Grid>
 
         <Grid>

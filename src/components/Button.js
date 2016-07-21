@@ -20,6 +20,9 @@ const Button = (props) => {
 
     const {
         disabled,
+        primary,
+        colored,
+        accent,
         ...otherProps
     } = props
 
@@ -35,7 +38,6 @@ Button.propTypes = {
     colored: React.PropTypes.bool,
     primary: React.PropTypes.bool,
     accent: React.PropTypes.bool,
-    ripple: React.PropTypes.bool,
     disabled: React.PropTypes.bool
 }
 

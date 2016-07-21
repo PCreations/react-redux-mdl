@@ -48,6 +48,17 @@ import {
     MiniFooterLinkList,
     MiniFooterSocialButton
 } from './components/Footer'
+import TextField from './components/TextField'
+import Checkbox from './components/Checkbox'
+import {
+    MDLtable,
+    MDLthead,
+    MDLtbody,
+    MDLtd,
+    MDLth,
+    MDLtr
+} from './components/Table'
+
 
 export {
     FlatButton,
@@ -107,5 +118,13 @@ export {
     MiniFooterLeftSection,
     MiniFooterRightSection,
     MiniFooterLinkList,
-    MiniFooterSocialButton
+    MiniFooterSocialButton,
+    TextField,
+    Checkbox,
+    MDLtable,
+    MDLthead,
+    MDLtbody,
+    MDLtd,
+    MDLth,
+    MDLtr
 }
