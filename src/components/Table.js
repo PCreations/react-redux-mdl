@@ -1,6 +1,5 @@
 import React from 'react'
 import cx from 'classnames'
-import uniqueId from 'lodash/uniqueid'
 
 import Checkbox from './Checkbox'
 

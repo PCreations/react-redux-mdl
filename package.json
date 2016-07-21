@@ -1,6 +1,6 @@
 {
   "name": "react-redux-mdl",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Implementation of Material Design Lite for React and Redux",
   "main": "./lib/index.js",
   "homepage": "https://github.com/PCreations/react-redux-mdl.git",
