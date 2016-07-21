@@ -21,7 +21,7 @@ class TextField extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            focus: false,
+            focus: typeof props.autoFocus === "undefined" ? false : props.autoFocus,
             invalid: false,
             value: props.value || ''
         }
@@ -85,6 +85,7 @@ class TextField extends React.Component {
             disabled,
             floatingLabel,
             errorText,
+            autoFocus,
             onBlur,
             onFocus,
             onChange,
@@ -120,7 +121,8 @@ class TextField extends React.Component {
                     onFocus={this.onFocus}
                     onChange={this.onChange}
                     value={this.state.value}
-                    className={inputClassName}/>
+                    className={inputClassName}
+                    autoFocus/>
                 <label
                     htmlFor={id}
                     className={labelClassName}>
